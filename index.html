@@ -80,7 +80,7 @@
         </nav>
         <button id="menu-btn" class="md:hidden flex items-center">
           <svg
-            class="w-6 h-6 text-white"
+            class="w-6 h-6 text-blue-900"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
@@ -95,7 +95,7 @@
           </svg>
         </button>
       </div>
-      <div id="mobile-menu" class="hidden md:hidden bg-gray-800 p-4">
+      <div id="mobile-menu" class="hidden md:hidden p-4">
         <a
           href="#about"
           class="block py-2 hover:text-cyan-400 transition duration-300"
@@ -181,10 +181,10 @@
     <!-- Projects Section -->
     <section
       id="projects"
-      class="block bg-white py-20 bg-gradient-to-r from-cyan-50 via-purple-100 to-pink-500"
+      class="bg-white py-20 bg-gradient-to-r from-cyan-50 via-purple-100 to-pink-500"
     >
       <div class="container mx-auto text-center">
-        <h3 class="text-4xl font-bold mb-12 text-sky-400">PROJECTS</h3>
+        <h3 class="block text-4xl font-bold mb-12 text-sky-400">PROJECTS</h3>
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <!-- Project 1 -->
           <div
@@ -476,6 +476,13 @@
     </section>
 
     <!-- Footer Section -->
+    <button
+      id="go-to-top"
+      class="fixed bottom-6 right-6 w-12 h-12 bg-blue-900 text-white flex items-center justify-center rounded-full shadow-lg hover:bg-blue-300 transition duration-300 text-xl font-bold"
+    >
+      ↑
+    </button>
+
     <footer class="bg-white text-slate-800 py-6">
       <div class="container mx-auto text-center">
         <p>&copy; 2025 Harsimran Kaur. All Rights Reserved.</p>
@@ -506,6 +513,24 @@
 
         blocks.forEach((block) => {
           observer.observe(block);
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const goToTopBtn = document.getElementById("go-to-top");
+
+        // Show button when user scrolls down
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 200) {
+            goToTopBtn.classList.remove("hidden");
+          } else {
+            goToTopBtn.classList.add("hidden");
+          }
+        });
+
+        // Scroll to top when button is clicked
+        goToTopBtn.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
         });
       });
     </script>
