@@ -33,8 +33,28 @@
         );
         z-index: -1;
       }
+      @keyframes appear {
+        from {
+          opacity: 0;
+          transform: translateY(50px); /* Start 50px below */
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0); /* Move to normal position */
+        }
+      }
+
+      .block {
+        opacity: 0; /* Start hidden */
+        transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+      }
+
+      .block.visible {
+        animation: appear 1s ease-in-out forwards;
+      }
     </style>
   </head>
+
   <body class="bg-white text-blue-900">
     <!-- Header Section -->
     <header class="bg-white sticky top-0 z-50 shadow-sm">
@@ -100,7 +120,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative text-center py-24">
+    <section class="block relative text-center py-24">
       <div class="container mx-auto">
         <div class="circular-highlight">
           <img
@@ -129,7 +149,7 @@
     <!-- About Section -->
     <section id="about" class="py-20 bg-white">
       <div
-        class="container mx-auto flex flex-col-reverse md:flex-row items-center gap-12"
+        class="container block mx-auto flex flex-col-reverse md:flex-row items-center gap-12"
       >
         <div class="md:w-1/2 px-6">
           <h3 class="text-4xl font-bold mb-4 text-salte-900">About Me</h3>
@@ -161,14 +181,14 @@
     <!-- Projects Section -->
     <section
       id="projects"
-      class="bg-white py-20 bg-gradient-to-r from-cyan-50 via-purple-100 to-pink-500"
+      class="block bg-white py-20 bg-gradient-to-r from-cyan-50 via-purple-100 to-pink-500"
     >
       <div class="container mx-auto text-center">
         <h3 class="text-4xl font-bold mb-12 text-sky-400">PROJECTS</h3>
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <!-- Project 1 -->
           <div
-            class="bg-white rounded-lg shadow-md overflow-hidden group hover:scale-105 transform transition duration-300"
+            class="block bg-white rounded-lg shadow-md overflow-hidden group hover:scale-105 transform transition duration-300"
           >
             <img
               src="projects.PNG"
@@ -204,7 +224,7 @@
 
           <!-- Project 2 -->
           <div
-            class="bg-gray-700 rounded-lg shadow-md overflow-hidden group hover:scale-105 transform transition duration-300"
+            class="block bg-gray-700 rounded-lg shadow-md overflow-hidden group hover:scale-105 transform transition duration-300"
           >
             <img
               src="projects2.jpg"
@@ -237,7 +257,7 @@
 
           <!-- Project 3 -->
           <div
-            class="bg-white rounded-lg shadow-md overflow-hidden group hover:scale-105 transform transition duration-300"
+            class="block bg-white rounded-lg shadow-md overflow-hidden group hover:scale-105 transform transition duration-300"
           >
             <img
               src="projects.PNG"
@@ -251,7 +271,7 @@
                 Stop Watch
               </h4>
               <p
-              class="text-slate-800 mb-4 group-hover:transition duration-300"
+                class="text-slate-800 mb-4 group-hover:transition duration-300"
               >
                 A modern, responsive stopwatch built using HTML, CSS, and
                 JavaScript. It features a clean UI with a glassmorphism effect,
@@ -271,21 +291,21 @@
 
           <!-- Project 4 -->
           <div
-            class="bg-gray-700 rounded-lg shadow-md overflow-hidden group hover:scale-105 transform transition duration-300"
+            class="block bg-gray-700 rounded-lg shadow-md overflow-hidden group hover:scale-105 transform transition duration-300"
           >
-          <img
-          src="projects2.jpg"
-          alt="Project Image"
-          class="w-full h-48 object-cover group-hover:opacity-75 transition duration-300"
-        />
+            <img
+              src="projects2.jpg"
+              alt="Project Image"
+              class="w-full h-48 object-cover group-hover:opacity-75 transition duration-300"
+            />
             <div class="p-6">
               <h4
-              class="font-bold text-xl mb-2 text-cyan-400 group-hover:text-cyan-300 transition duration-300"
+                class="font-bold text-xl mb-2 text-cyan-400 group-hover:text-cyan-300 transition duration-300"
               >
                 Rating Component
               </h4>
               <p
-              class="text-gray-400 mb-4 group-hover:text-gray-300 transition duration-300"
+                class="text-gray-400 mb-4 group-hover:text-gray-300 transition duration-300"
               >
                 The Interactive Rating Component is a user-friendly and
                 responsive feature designed to collect user feedback by allowing
@@ -305,7 +325,7 @@
 
           <!-- Project 5 -->
           <div
-            class="bg-white rounded-lg shadow-md overflow-hidden group hover:scale-105 transform transition duration-300"
+            class="block bg-white rounded-lg shadow-md overflow-hidden group hover:scale-105 transform transition duration-300"
           >
             <img
               src="projects.PNG"
@@ -338,7 +358,7 @@
 
           <!-- Project 6 -->
           <div
-            class="bg-gray-700 rounded-lg shadow-md overflow-hidden group hover:scale-105 transform transition duration-300"
+            class="block bg-gray-700 rounded-lg shadow-md overflow-hidden group hover:scale-105 transform transition duration-300"
           >
             <img
               src="projects2.jpg"
@@ -373,7 +393,7 @@
 
     <!-- Skills Section -->
     <section id="skills" class="py-20 bg-white">
-      <div class="container mx-auto text-center">
+      <div class="block container mx-auto text-center">
         <h3 class="text-4xl font-bold mb-12 text-cyan-400">SKILLS</h3>
         <div class="flex flex-wrap justify-center gap-4">
           <span
@@ -417,7 +437,7 @@
       id="contact"
       class="relative bg-gradient-to-r from-blue-100 via-cyan-500 to-teal-100 text-white py-24"
     >
-      <div class="container mx-auto text-center">
+      <div class="block container mx-auto text-center">
         <h3 class="text-4xl font-bold mb-6">Contact Me</h3>
         <p class="mb-6">
           I'd love to hear from you! Whether it's a project inquiry or just a
@@ -468,6 +488,25 @@
 
       menuBtn.addEventListener("click", () => {
         mobileMenu.classList.toggle("hidden");
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const blocks = document.querySelectorAll(".block");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+
+        blocks.forEach((block) => {
+          observer.observe(block);
+        });
       });
     </script>
   </body>
